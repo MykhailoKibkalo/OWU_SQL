@@ -209,18 +209,9 @@ WHERE City = (
     FROM client c
              JOIN application a on c.idClient = a.Client_idClient
     GROUP BY idClient
-    HAVING COUNT(Client_idClient) = (SELECT MAX(Client_idClient))
-);
-
-select idClient, FirstName, City
-from client
-where City = (
-    select City
-    from client
-             join application a on client.idClient = a.Client_idClient
-    group by idClient
-    order by count(Client_idClient) desc
-    limit 1);
+    ORDER BY COUNT(Client_idClient) DESC
+    LIMIT 1
+    );
 
 # #місто чувака який набрав найбільше кредитів
 
